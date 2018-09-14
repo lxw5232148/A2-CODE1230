@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>data</title>
+    <meta charset="utf-8">
+    <meta name="author" content="pixelhint.com">
+    <meta name="description" content="Heros - Learn How To Convert a PSD Template TO HTML5/CSS3"/>
+
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <!-- Javascript Files -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/slider.js"></script>
+    <script type="text/javascript" src="js/wow.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
+
+    <script src='./data.js'></script>
+    
+ 
+
+</head>
+<body>
+
+    <!-- header Section -->
+    <header>
+        <div class="container">
+            
+            <!-- Jump to github  -->
+            <a href="https://lxw5232148.github.io/CODE1230-ASSIGNMENT2/" class="mtitle">
+                CODE1230 ASSIGNMENT 2
+            </a>
+
+            <!-- Navigation Menu  -->
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="selected">Introduction</a></li>
+                    <li><a href="map.html">Data-Story</a></li>
+                    <li><a href="source.html">Source</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header><!-- end header -->
+
+
+
+    
+
+    <div class="container">
+            <div class="main">
+
+                <hr/>
+
+
+<section class="services container clearfix">
+            
+            <!-- Services Title  -->
+            <div class="section_title animated wow fadeInUp">
+                <h3><li>The data!</li></h3>
+
+<br/>
+<h4>
+MAP 1: </br></br>color: white-black-red (ratio:0-1-3.4)      </br>     height:personal total income(weekly)
+</br>
+</br>
+MAP 2: </br></br>color: white-red--yellow-black (range:0-664-5000-11540) personal total income(weekly)     </br>     height:female/male income(weekly) (ratio:1-3.4)
+</h4>
+</br>
+</br>
+ From the map 1, it can be easily seen that the Gender wage ratio between 0-1 occupied a large part of the SA1. And also the area where women earn more than men is not absent, but in terms of proportion, it can indicate the inequality between incomes.
+</br>
+</br>
+From the map 2, it can be seen that the place where women’s wages are higher than men is not a high-income group.As <a href="http://quickstats.censusdata.abs.gov.au/census_services/getproduct/census/2016/quickstat/1?opendocument">"The median weekly personal income for people aged 15 years and over in New South Wales was $664."
+(Quickstats.censusdata.abs.gov.au, 2018)</a>
+</br>
+</br>
+So compare map 1 and map 2, we can find the existence of a income gap by gender.
+
+</br>
+</br>
+
+ <a href="https://www.smh.com.au/business/the-economy/nsw-helps-shrink-the-gender-pay-gap-20180225-p4z1ny.html">"Official wages data shows there is a gender pay gap favouring full-time working men over full-time working women in every major industry and occupational category in Australia. The biggest gender pay gap in November was in finance and insurance (26.1 per cent) while the smallest was in public administration and safety (6.8 per cent)."(Wade, 2018)</a>
+ <br/>
+
+            </div>
+
+            <!-- Services List  -->
+            <div class="services_list">
+                <ul>
+                    <li class="animated wow fadeInRight" data-wow-delay=".2s">
+                        <h4>Data Map</h4>
+                        <br/>
+                    </li>
+
+                    <li class="animated wow fadeInRight" data-wow-delay=".2s">
+                        <div id='map' style='width:715px;height: 400px;float: left;margin-right: 40px;'>
+                            <script>
+                            mapboxgl.accessToken = 'pk.eyJ1IjoiY3J1c2gxMTAyIiwiYSI6ImNqYWZhMGttdTEyNmkzMnJ6c3FkaWRzdWgifQ.4D2wtlo2xcG5txDWnv1jCQ';
+                            var map = new mapboxgl.Map({
+                                container: 'map', // container id
+                                style: 'mapbox://styles/mapbox/light-v9', // stylesheet location
+                                center: [151.004105,-33.813002], // starting position [lng, lat]
+                                zoom: 5,
+                                pitch: 35,
+                            bearing: 30
+                            });
+                            map.on('load', function() {
+                                map.addLayer({ 
+                                    "id": "data", 
+                                    "type": "fill-extrusion", 
+                                    "source": {
+                                        'type': 'geojson', 
+                                        'data': data 
+                                    },
+                                    'paint': {
+                                        'fill-extrusion-color' : { 
+                                            'property': 'F/M', 
+                                            "stops":[
+                                            [0, 'white'],
+                                            [1, 'black'], 
+                                            [3.4, 'red'] 
+                                            ]
+                                        }, 
+                                        'fill-extrusion-height' : {
+                                            'property': 'P_TOTAL', "stops":[ 
+                                            [0,11540], 
+                                            [1, 50000] 
+                                            ] 
+                                        },
+                                        'fill-extrusion-opacity': 0.9
+                                         } 
+                                     }); 
+                            });
+                            </script>
+                        </div>
+                    </li>
+                    <li class="animated wow fadeInRight" data-wow-delay=".2s">
+                        <br/>
+                        <h5>1.Ratio of Female income/Male income(weekly) </h5>
+                        <br/>
+                    </li>
+
+ 
+ <li class="animated wow fadeInRight" data-wow-delay=".2s">
+            <div id='map3' style='width: 715px; height: 400px; float: left;margin-right: 40px;'></div>
+                <script>
+                    mapboxgl.accessToken = 'pk.eyJ1IjoiYWxhbnc0MTAiLCJhIjoiY2o2dm5haXU2MTN6ZzJxbW5zNzZiYno1dyJ9.SKQLCI0TiB8PGaPsij9PgQ';
+                    var map3 = new mapboxgl.Map({
+                        container: 'map3',
+                        style: 'mapbox://styles/mapbox/light-v9',
+                        center: [151.004105,-33.813002],
+                        zoom: 5,
+                        pitch: 35,
+    bearing: 30
+                });
+                map3.on('load', function() {
+                    map3.addLayer({
+                        'id': 'data',
+                        'type': 'fill-extrusion',
+                        'source': {
+                            'type': 'geojson',
+                            'data': data
+                        },
+                        'paint': {
+                            'fill-extrusion-color': {
+                                // Get the fill-extrusion-color from the source 'color' property.
+                                'property': 'P_TOTAL',
+                                'stops': [
+                    [0, 'white'],
+                    [664, 'red'],
+                    [5000, 'yellow'],
+                    [11540, 'black'] 
+                    ]
+                            },
+                            'fill-extrusion-height': {
+                                // Get fill-extrusion-height from the source 'height' property.
+                                'property': 'F/M',
+                                'stops': [
+                                    [1,3.4],
+                                    [1,50000]
+                                    ]
+                            },
+                            // Make extrusions slightly opaque for see through indoor walls.
+                            'fill-extrusion-opacity': 0.9
+                        }
+                    });
+                });
+                </script>
+
+</li>
+                    <li class="animated wow fadeInRight" data-wow-delay=".2s">
+                        <br/>
+ <h5>2.Ratio of Female income/Male income(weekly)</h5>
+
+<a href="https://datapacks.censusdata.abs.gov.au/datapacks/">Female income/Male income(weekly,2016)<span class="arrow">&rarr;</span></a>
+                    </li>
+
+            </li>
+                    
+                </ul>
+            </div>
+
+    </section><!-- end services -->
+
+
+
+
+
+<section class="projects container clearfix">
+            
+            <!-- Projects Title  -->
+            <div class="section_title animated wow fadeInUp">
+                <h3><li>What  years  does  the  census  take  place?</li></h3>
+            </div>
+
+            <!-- Projects List  -->
+            <div class="projects_list clearfix">
+                <ul>
+                    <li class="animated wow fadeInRight" data-wow-delay=".2s">
+
+                        <p>2016</p>
+                        <a href=https://profile.id.com.au/sydney/individual-income>"In the City of Sydney, 21.1% of the population earned an income of $1,750 or more per week in 2016."(Profile.id.com.au, 2018)</a></p>
+                        <img src="img/chart.png" width=60%;>
+
+                       
+                    </li>
+                    
+                </ul>
+            </div>
+
+    </section>
+
+
+
+
+<!-- Services Section -->
+    <section class="services container clearfix">
+            
+            <!-- Services Title  -->
+            <div class="section_title animated wow fadeInUp">
+                <h3><li>The story!</li></h3>
+            </div>
+
+            <!-- Services List  -->
+            <div class="services_list">
+                <ul>
+                    <li class="animated wow fadeInRight" data-wow-delay=".2s">
+                       <h4>There is a income gap by gender.</h4>
+                        <br/>
+                        <br/>
+                        Sometimes, under the same working conditions, women earn less than men. 
+                        <br/>
+                        And also under different working conditions, women are often in an 
+                        unfavorable situation due to invisible gender discrimination. 
+                        <br/>
+                        Such a kind of situation leads to the gap of income differences.
+                    </li>
+
+
+
+
+                </ul>
+            </div>
+
+</section>
+
+
+
+    <!-- Services Section -->
+    <section class="services container clearfix">
+            
+            <!-- Services Title  -->
+            <div class="section_title animated wow fadeInUp">
+                <h3><li>Who?</li></h3>
+                <h3><li>What?</li></h3>
+            </div>
+
+            <!-- Services List  -->
+            <div class="services_list">
+                <ul>
+                    <li class="animated wow fadeInRight" data-wow-delay=".2s">
+                        City of Sydney - Persons aged 15+ (Usual residence)
+<br>
+<br>
+                        Gender wage gap.
+
+                    </li>
+
+
+
+
+                </ul>
+            </div>
+</section>
+
+
+
+
+<!-- Services Section -->
+    <section class="services container clearfix">
+            
+            <!-- Services Title  -->
+            <div class="section_title animated wow fadeInUp">
+                <h3><li>How?</li></h3>
+            </div>
+
+            <!-- Services List  -->
+            <div class="services_list">
+                <ul>
+                    <li class="animated wow fadeInRight" data-wow-delay=".2s">
+                       
+                       <img src="img/QG_Wages-01.gif" >
+                       <img src="img/QG_Wages-02.gif" >
+
+                       <h5>Average total cash earnings of non-managerial employees paid at the adult rate, May 2016</h5>
+
+                    </li>
+
+
+
+
+                </ul>
+            </div>
+        </section>
+
+
+
+
+
+
+<!-- Services Section -->
+    <section class="services container clearfix">
+            
+            <!-- Services Title  -->
+            <div class="section_title animated wow fadeInUp">
+                <h3><li>Why?</li></h3>
+            </div>
+
+            <!-- Services List  -->
+            <div class="services_list">
+                <ul>
+                    <li class="animated wow fadeInRight" data-wow-delay=".2s">
+                        
+                        Women are more engaged in part-time jobs, almost half (46%) of all female employees working part-time hours compared to about 18% of male employees (Aph.gov.au, 2018).
+<br>
+                        Because of the child care, ABS Gender Indicator data of 2016 shows 62% of employed women with a child under five work part-time, while only 8.7% of men do (Livsey, 2018).
+<br>
+                        Female employees are typically underrepresented in managerial roles (approximately 31% of senior and middle level managers in 2015) (Aph.gov.au, 2018).
+
+                        <br/>
+                        <br/>
+                        <br/>
+                        <ul><h4>
+                        <li>- Discrimination and bias in hiring and pay decisions</li><br/><br/><br/>
+
+
+                        <li>- Women and men working in different industries and different jobs, with female-dominated industries and jobs attracting lower wages</li><br/><br/><br/>
+
+
+                        <li>- Women's disproportionate share of unpaid caring and domestic work</li><br/><br/><br/>
+
+
+                        <li>- Lack of workplace flexibility to accommodate caring and other responsibilities, especially in senior roles</li>
+<br/><br/><br/>
+
+                        <li>- Women's greater time out of the workforce impacting career progression and opportunities.</li><br/><br/><br/>
+
+                        (Wgea.gov.au, 2018)
+                    </ul></h4>
+
+
+                    </li>
+
+
+
+
+                </ul>
+            </div>
+
+</section>
+
+<section class="projects container clearfix">
+            
+            <!-- Projects Title  -->
+            <div class="section_title animated wow fadeInUp">
+                <h3><li>What  is  the  latte  line?</li></h3>
+                <a href="https://www.smh.com.au/national/nsw/sydney-s-latte-line-exposes-a-city-divided-20180327-p4z6et.html"><p>"The so-called latte line, a border that splits Sydney down class and economic lines running from the airport north-west through Parramatta, is illustrated in new data from the Australian Bureau of Statistics that uses measures of income, occupation and other information to rank an areas' economic and social conditions as part of their Socio-Economic Indexes for Areas (SEIFA). "(Gladstone, 2018)</p></a>
+
+                    <br/>
+                <br/>
+                <br/>
+                <h3><li>The story  relate  to  the  latte  line?</li></h3>
+
+                <p>We can see from the distribution location map on the right, there is no obvious difference between the two sides of the latte line, which shows that the income gap between genders is ubiquitous.</p>
+            </div>
+
+
+            <div class="projects_list clearfix">
+                <ul>
+                    
+                      <li class="animated wow fadeInRight" data-wow-delay=".2s">
+
+                        <h5>Gender wage gap distribution location</h5>
+
+                        <br/>
+                        <br/>
+                        
+                        <img src="img/2.png" width="auto">
+                        <img src="img/3.jpg" width="auto"> ratio:3.4-0
+
+                       
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+
+
+            
+
+    </section>
+
+
+    </section><!-- end services -->
+</div>
+</div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            
+            Z5232148 Xiaowen Li
+
+            </div>
+
+        </div>
+
+    </footer><!-- end footer -->
+
+</body>
+</html>

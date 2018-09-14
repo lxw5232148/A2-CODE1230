@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Display a map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.css' rel='stylesheet' />
+
+    <script src='./data.js'></script>
+    
+    <style>
+        body { margin:0; padding:20px; }
+        #map { position:absolute; top:50px; bottom:20px; width:50%; }
+    </style>
+
+</head>
+<body>
+
+     <div class="topnav" id="myTopNav">
+          <a href="index.html">ITRODUCTION</a> 
+         <a href="MAP.html">MAP 3D</a> 
+       </div>
+
+    <div id='map'>
+    <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiY3J1c2gxMTAyIiwiYSI6ImNqYWZhMGttdTEyNmkzMnJ6c3FkaWRzdWgifQ.4D2wtlo2xcG5txDWnv1jCQ';
+    var map = new mapboxgl.Map({
+        container: 'map', // container id
+        style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
+        center: [151.004105,-33.813002], // starting position [lng, lat]
+        zoom: 9,
+        pitch:40,
+        bearing:20
+    });
+
+    map.on('load', function() {
+
+        map.addLayer({ 
+            "id": "data", 
+            "type": "fill-extrusion", 
+            "source": {
+                'type': 'geojson', 
+                'data': data 
+            },
+            'paint': {
+                'fill-extrusion-color' : { 
+                    'property': 'P_TOTAL', 
+                    "stops":[
+                    [0, 'blue'], 
+                    [1000, 'red'] 
+                    ]
+                }, 
+                'fill-extrusion-height' : {
+                    'property': 'M/F', "stops":[ 
+                    [0,100], 
+                    [1, 5000] 
+                    ] 
+                },
+                'fill-extrusion-opacity': 0.9
+                 } 
+             }); 
+    });
+
+    </script>
+    </div>
+
+
+<!-- <div id='map'></div> -->
+<!-- <script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiY3J1c2gxMTAyIiwiYSI6ImNqYWZhMGttdTEyNmkzMnJ6c3FkaWRzdWgifQ.4D2wtlo2xcG5txDWnv1jCQ';
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
+    center: [142, -30], // starting position [lng, lat]
+    zoom: 5 // starting zoom
+    pitch:40,
+    bearing:20
+});
+</script> -->
+
+</body>
+</html>
